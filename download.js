@@ -6,6 +6,6 @@ function download(url) {
 // download();
 
 chrome.runtime.onMessage.addListener(msg => {
-    // console.log(msgObj);
+    console.log(msg.downloadUrl);
     download(msg.downloadUrl);
 });

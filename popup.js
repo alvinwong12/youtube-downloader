@@ -15,4 +15,7 @@ function injectTheScript() {
 document.getElementById('download-btn').addEventListener('click', injectTheScript);
 
 
+chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
+    document.getElementById('download-url').value = tabs[0].url;
+});
 
