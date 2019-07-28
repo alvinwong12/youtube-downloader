@@ -16,7 +16,6 @@ chrome.runtime.onMessage.addListener(
       if(arg.type == "download"){
         chrome.downloads.download({
           url: arg.url,
-          filename: "test.txt",
           saveAs: false
         }, function(downloadId){
             if (downloadId == undefined){
