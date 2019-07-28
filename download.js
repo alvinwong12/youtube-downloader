@@ -1,5 +1,11 @@
-let downloadBtn = document.getElementById("download-btn");
+function download(url) {
+    var message = {type : "download", url: url};
+    chrome.runtime.sendMessage(message);
+}
 
-downloadBtn.addEventListener("click", function(){
-    alert("Downloading...");
-})
+// download();
+
+chrome.runtime.onMessage.addListener(msg => {
+    // console.log(msgObj);
+    download(msg.downloadUrl);
+});

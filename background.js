@@ -9,3 +9,21 @@ chrome.runtime.onInstalled.addListener(function() {
         }]);
     });
 });
+
+chrome.runtime.onMessage.addListener(
+    function(arg, sender, sendResponse) {
+
+      if(arg.type == "download"){
+        chrome.downloads.download({
+          url: arg.url,
+          filename: "test.txt",
+          saveAs: false
+        }, function(downloadId){
+            if (downloadId == undefined){
+                console.error("Cannot download");
+            } else{
+                console.log(downloadId)
+            }
+        });
+      }
+  });
