@@ -3,9 +3,8 @@ function download(url) {
     chrome.runtime.sendMessage(message);
 }
 
-// download();
-
-chrome.runtime.onMessage.addListener(msg => {
-    console.log(msg.downloadUrl);
-    download(msg.downloadUrl);
+chrome.runtime.onMessage.addListener(arg => {
+    if (arg.type == "download-url"){
+        download(arg.downloadUrl);
+    }
 });

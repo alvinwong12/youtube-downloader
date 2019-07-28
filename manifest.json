@@ -11,5 +11,11 @@
     "page_action": {
         "default_popup": "popup.html"
     },
-    "permissions": ["declarativeContent", "downloads", "tabs", "<all_urls>"]
+    "permissions": ["declarativeContent", "downloads", "tabs", "<all_urls>"],
+    "content_scripts": [
+        {
+          "matches": ["https://*.youtube.com/*"],
+          "js": ["download.js"]
+        }
+      ]
 }
