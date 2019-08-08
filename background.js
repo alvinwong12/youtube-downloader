@@ -15,7 +15,8 @@ chrome.runtime.onMessage.addListener(
       if(arg.type == "download"){
         chrome.downloads.download({
           url: arg.url,
-          saveAs: false
+          saveAs: false,
+          method: "GET"
         }, function(downloadId){
             if (downloadId == undefined){
                 console.error("Cannot download");
@@ -29,8 +30,8 @@ chrome.runtime.onMessage.addListener(
 chrome.management.getSelf(function(extensionInfo){
 
     if(extensionInfo.installType == "development"){
-        chrome.storage.sync.set({serverUrl: 'localhost:5000'}, function() {});
+        chrome.storage.sync.set({serverUrl: 'http://localhost:5000'}, function() {});
     } else {
-        chrome.storage.sync.set({serverUrl: 'localhost:5000'}, function() {}); // change to prod url later
+        chrome.storage.sync.set({serverUrl: 'http://localhost:5000'}, function() {}); // change to prod url later
     }
 });

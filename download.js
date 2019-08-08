@@ -1,6 +1,6 @@
-function download(videoId) {
+function download(videoId, option) {
     chrome.storage.sync.get('serverUrl', function(data) {
-        var message = {type : "download", url: data.serverUrl + "/" + videoId};
+        var message = {type : "download", url: data.serverUrl + "/" + videoId + "?option=" +  option};
         chrome.runtime.sendMessage(message);
     });
     
@@ -8,6 +8,6 @@ function download(videoId) {
 
 chrome.runtime.onMessage.addListener(arg => {
     if (arg.type == "videoId"){
-        download(arg.videoId);
+        download(arg.videoId, arg.option);
     }
 });
