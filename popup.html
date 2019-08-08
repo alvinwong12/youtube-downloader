@@ -3,16 +3,19 @@
 <head>
     <style>
     button {
-        height: 30px;
-        width: 100px;
+        height: 20px;
         outline: none;
+        display: inline-block;
     }
     </style>
 </head>
 <body>
     <form>
         <input type="text" name="videoId" id="videoId">
+        <input type="radio" name="option" value="audio" checked> Audio<br>
+        <input type="radio" name="option" value="both"> Both<br>
     </form>
+    <button id="select-btn">Select</button>
     <button id="download-btn">Download</button>
     <script src="popup.js"></script>
 </body>

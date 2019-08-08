@@ -4,14 +4,26 @@ function startDownload() {
         if (videoId == null || videoId == undefined || videoId == ""){
             videoId = tabs[0].url;
         }
-        chrome.tabs.sendMessage(tabs[0].id, {type: "videoId", videoId: videoId});
+        var options = document.getElementsByName('option'); 
+        var option = "" 
+        for(i = 0; i < options.length; i++) { 
+            if(options[i].checked) {
+                option = options[i].value; 
+            }
+        } 
+        chrome.tabs.sendMessage(tabs[0].id, {type: "videoId", videoId: videoId, option: option});
+    });
+}
+
+function setVideoId(){
+    chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
+        var s = tabs[0].url.split("watch?v=");    
+        document.getElementById('videoId').value = s.length > 1 ? s[1] : "";
     });
 }
 
 document.getElementById('download-btn').addEventListener('click', startDownload);
+document.getElementById('select-btn').addEventListener('click', setVideoId);
 
-chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
-    var s = tabs[0].url.split("watch?v=");    
-    document.getElementById('videoId').value = s.length > 1 ? s[1] : "";
-});
+setVideoId();
 
