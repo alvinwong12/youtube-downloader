@@ -1,16 +1,17 @@
 function startDownload() {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-        var downloadUrl = document.getElementById("download-url").value;
-        if (downloadUrl == null || downloadUrl == undefined || downloadUrl == ""){
-            downloadUrl = tabs[0].url;
+        var videoId = document.getElementById("videoId").value;
+        if (videoId == null || videoId == undefined || videoId == ""){
+            videoId = tabs[0].url;
         }
-        chrome.tabs.sendMessage(tabs[0].id, {type: "download-url", downloadUrl: downloadUrl});
+        chrome.tabs.sendMessage(tabs[0].id, {type: "videoId", videoId: videoId});
     });
 }
 
 document.getElementById('download-btn').addEventListener('click', startDownload);
 
 chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
-    document.getElementById('download-url').value = tabs[0].url;
+    var s = tabs[0].url.split("watch?v=");    
+    document.getElementById('videoId').value = s.length > 1 ? s[1] : "";
 });
 

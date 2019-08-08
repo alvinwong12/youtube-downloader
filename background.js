@@ -12,7 +12,6 @@ chrome.runtime.onInstalled.addListener(function() {
 
 chrome.runtime.onMessage.addListener(
     function(arg, sender, sendResponse) {
-
       if(arg.type == "download"){
         chrome.downloads.download({
           url: arg.url,
@@ -24,5 +23,14 @@ chrome.runtime.onMessage.addListener(
                 console.log(downloadId)
             }
         });
+    }
+});
+
+chrome.management.getSelf(function(extensionInfo){
+
+    if(extensionInfo.installType == "development"){
+        chrome.storage.sync.set({serverUrl: 'localhost:5000'}, function() {});
+    } else {
+        chrome.storage.sync.set({serverUrl: 'localhost:5000'}, function() {}); // change to prod url later
     }
 });
