@@ -6,7 +6,7 @@ import logging
 
 app = Flask(__name__)
 
-logging.basicConfig(level=logging.DEBUG)
+logging.basicConfig(level=logging.INFO)
 
 @app.route("/<videoId>")
 def download(videoId):
