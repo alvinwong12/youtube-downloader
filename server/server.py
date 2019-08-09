@@ -1,5 +1,6 @@
 from flask import Flask, abort, send_file, request
 from download import YoutubeDownloader, Options
+from clean import Clean
 import os
 import logging
 
@@ -13,6 +14,7 @@ def download(videoId):
         option = Options.AUDIO if request.args.get("option", "") == "audio" else Options.BOTH
         filename = YoutubeDownloader.download(videoId, option)
         if not filename: raise
+        Clean.scheduleRemove(filename)
         return send_file(os.path.join(".", filename))
     except YoutubeDownloader.VideoNotFoundException:
         abort(404)

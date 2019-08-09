@@ -7,7 +7,7 @@ class TestYoutubeDownloader(unittest.TestCase):
         videoId = 'abc'
         option = Options.AUDIO
         YoutubeDownloader.status[videoId] =  {'status': None, 'filename': "", 'ext': option}
-        YoutubeDownloader.promise({'status': 'finished', "filename": 'abc.webm'})
+        YoutubeDownloader.promise({'status': 'finished', "filename": 'def-abc.webm'})
         self.assertEquals(YoutubeDownloader.status[videoId]['filename'], "abc.mp3")
 
 if __name__ == "__main__":
