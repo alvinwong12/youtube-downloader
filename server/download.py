@@ -1,5 +1,7 @@
 import youtube_dl
 from youtube_dl import DownloadError
+import os
+
 
 class UnsupportedOperationException(Exception):
     pass
@@ -63,6 +65,7 @@ class YoutubeDownloader(object):
             videoId = YoutubeDownloader.getVideoId(d['filename'])
             YoutubeDownloader.status[videoId]['status'] = d['status']
             YoutubeDownloader.status[videoId]['filename'] = d['filename'].replace(".webm", YoutubeDownloader.status[videoId]['ext'])
+            YoutubeDownloader.status[videoId]['filename'] = videoId + YoutubeDownloader.status[videoId]['ext']
         elif d['status'] == 'error':
             YoutubeDownloader.status[videoId]['status'] = d['status']
     
@@ -75,3 +78,8 @@ class YoutubeDownloader(object):
             if c == ".": add = True
               
         return tmp[::-1]
+
+    @staticmethod
+    def rename(old, new):
+        os.rename(old, new)
+        return new
