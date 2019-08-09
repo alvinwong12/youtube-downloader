@@ -65,7 +65,7 @@ class YoutubeDownloader(object):
             videoId = YoutubeDownloader.getVideoId(d['filename'])
             YoutubeDownloader.status[videoId]['status'] = d['status']
             YoutubeDownloader.status[videoId]['filename'] = d['filename'].replace(".webm", YoutubeDownloader.status[videoId]['ext'])
-            YoutubeDownloader.status[videoId]['filename'] = videoId + YoutubeDownloader.status[videoId]['ext']
+            YoutubeDownloader.status[videoId]['filename'] = YoutubeDownloader.rename(YoutubeDownloader.status[videoId]['filename'], videoId + YoutubeDownloader.status[videoId]['ext'])
         elif d['status'] == 'error':
             YoutubeDownloader.status[videoId]['status'] = d['status']
     
@@ -81,5 +81,8 @@ class YoutubeDownloader(object):
 
     @staticmethod
     def rename(old, new):
-        os.rename(old, new)
-        return new
+        try:
+            os.rename(old, new)
+            return new
+        except:
+            return old
