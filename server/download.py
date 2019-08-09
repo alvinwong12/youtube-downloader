@@ -70,7 +70,7 @@ class YoutubeDownloader(object):
     def getVideoId(s):
         tmp, add = "", False
         for c in s[::-1]:
-            if c == "-" and add: break   
+            if c == "-" and add and tmp[::-1] in YoutubeDownloader.status: break   
             if add: tmp += c
             if c == ".": add = True
               
