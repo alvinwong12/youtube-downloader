@@ -32,6 +32,6 @@ chrome.management.getSelf(function(extensionInfo){
     if(extensionInfo.installType == "development"){
         chrome.storage.sync.set({serverUrl: 'http://localhost:5000'}, function() {});
     } else {
-        chrome.storage.sync.set({serverUrl: 'http://localhost:5000'}, function() {}); // change to prod url later
+        chrome.storage.sync.set({serverUrl: 'basic-ingress.alvinwong12.usw1.kubesail.io'}, function() {}); // change to prod url later
     }
 });
