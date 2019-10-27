@@ -25,3 +25,6 @@ def download(videoId):
 @app.route("/health")
 def healthCheck():
     return "I'm OK!"
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0")
