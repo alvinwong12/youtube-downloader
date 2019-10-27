@@ -28,10 +28,28 @@ chrome.runtime.onMessage.addListener(
 });
 
 chrome.management.getSelf(function(extensionInfo){
+    var url = "http://basic-ingress.alvinwong12.usw1.kubesail.io";
+    var ping = function() {
+        var xhttp = new XMLHttpRequest();
+        try{
+            xhttp.onreadystatechange = function() {
+                console.log(this.readyState + " " + this.status)
+                if (this.readyState == 4 && this.status == 200) {
+                    url = "http://localhost:5000";
+                }
+            };
+            xhttp.open("GET", "http://localhost:5000/health", true);
+            xhttp.send();
+        } catch(e){
 
-    if(extensionInfo.installType == "development"){
-        chrome.storage.sync.set({serverUrl: 'http://localhost:5000'}, function() {});
-    } else {
-        chrome.storage.sync.set({serverUrl: 'basic-ingress.alvinwong12.usw1.kubesail.io'}, function() {}); // change to prod url later
+        }
     }
+    
+    ping();
+    chrome.storage.sync.set({serverUrl: url}, function() {});
+    // if(extensionInfo.installType == "development"){
+    //     chrome.storage.sync.set({serverUrl: 'http://localhost:5000'}, function() {});
+    // } else {
+    //     chrome.storage.sync.set({serverUrl: 'basic-ingress.alvinwong12.usw1.kubesail.io'}, function() {}); // change to prod url later
+    // }
 });
