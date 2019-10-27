@@ -1,7 +1,7 @@
 {
     "name": "Youtube Downloader",
     "version": "1.0",
-    "description": "test-build",
+    "description": "Download music from youtube",
     "manifest_version": 2,
     "background": {
         

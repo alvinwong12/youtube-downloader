@@ -17,8 +17,9 @@ function startDownload() {
 
 function setVideoId(){
     chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
-        var s = tabs[0].url.split("watch?v=");    
-        document.getElementById('videoId').value = s.length > 1 ? s[1] : "";
+        var s = tabs[0].url.split("watch?v=");
+        s = s[1].split("&");
+        document.getElementById('videoId').value = s.length > 1 ? s[0] : "";
     });
 }
 
