@@ -37,7 +37,7 @@ class YoutubeDownloader(object):
                     'preferredcodec': 'mp3',
                     'preferredquality': '192'
                 }],
-                'ffmpeg_location': '.',
+                # 'ffmpeg_location': '.',
                 'prefer_ffmpeg': True,
                 'progress_hooks': [YoutubeDownloader.promise],
             }
