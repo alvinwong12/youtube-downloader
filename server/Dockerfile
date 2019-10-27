@@ -8,4 +8,4 @@ RUN apt-get update -y
 RUN apt-get install ffmpeg -y
 
 EXPOSE 5000
-CMD ["python", "/server/server.py"]
+CMD ["gunicorn", "--bind", "0.0.0.0:5000", "wsgi:app"]
