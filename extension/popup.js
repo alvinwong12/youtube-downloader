@@ -19,7 +19,8 @@ function setVideoId(){
     chrome.tabs.query({'active': true, 'currentWindow': true}, function (tabs) {
         var s = tabs[0].url.split("watch?v=");
         s = s[1].split("&");
-        document.getElementById('videoId').value = s.length > 1 ? s[0] : "";
+        // document.getElementById('videoId').value = s.length > 1 ? s[0] : "";
+        document.getElementById('videoId').value = s[0];
     });
 }
 
